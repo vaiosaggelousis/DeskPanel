@@ -1,0 +1,22 @@
+# Runtime configuration contains your private access key
+/config.json
+/.env
+*.key
+*.pem
+
+# Python and test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Build outputs / editor files
+build/
+dist/
+*.spec
+*.log
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
