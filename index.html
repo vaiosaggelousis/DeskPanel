@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DeskPanel">
+<meta name="theme-color" content="#080a10">
+<title>DeskPanel</title>
+<link rel="stylesheet" href="/style.css?v=6">
+</head>
+<body>
+<div id="shell">
+<header class="topbar"><div class="brand"><span class="brandmark">▦</span><span>DeskPanel</span></div><div class="online"><i id="dot"></i><span id="host">Connecting…</span></div></header>
+<main id="views">
+<section class="view active" data-view="home" aria-label="Home dashboard">
+  <div class="hero-grid">
+    <div class="clock-panel"><p class="eyebrow">YOUR DESK · <span id="connection">CONNECTING</span></p><div class="clock" id="clock">--:--</div><div id="date" class="date"></div><div id="weather" class="weather">Loading weather…</div><div id="tomorrow" class="tomorrow" aria-live="polite"></div></div>
+    <div class="card media-card" aria-label="Now playing and PC audio controls">
+      <div class="card-heading"><span class="eyebrow accent">NOW PLAYING</span><div class="output-wrapper"><button id="output" class="pill" aria-label="Choose Windows audio output" aria-expanded="false">Audio output ▾</button><div id="output-menu" class="output-menu hidden" role="group" aria-label="Available audio outputs"></div></div></div>
+      <div class="player-main">
+        <div id="art" class="album">♫</div>
+        <div class="player-info">
+          <div class="media-details"><h2 id="track">Nothing playing</h2><p id="artist">Play something on your PC</p></div>
+          <div id="media-source" class="media-source" title="Media source application">—</div>
+        </div>
+      </div>
+      <div class="track-time"><span id="elapsed">0:00</span><div class="track-progress"><div id="trackfill"></div></div><span id="duration">0:00</span></div>
+      <div class="media-actions">
+        <div class="transport-controls">
+          <button data-media="prev" aria-label="Previous track" title="Previous track"><svg viewBox="0 0 24 24"><path d="M5 5v14M19 5 8 12l11 7V5Z"/></svg></button>
+          <button id="play" data-media="play_pause" aria-label="Play" title="Play / pause" class="play"><svg viewBox="0 0 24 24" id="play-icon"><path d="m8 5 11 7-11 7V5Z"/></svg></button>
+          <button data-media="next" aria-label="Next track" title="Next track"><svg viewBox="0 0 24 24"><path d="M19 5v14M5 5l11 7-11 7V5Z"/></svg></button>
+        </div>
+        <div class="volume-controls"><button id="mute" aria-label="Mute PC" aria-pressed="false" title="Mute / unmute"><svg id="mute-icon" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5Z M15 9a5 5 0 0 1 0 6 M18 6a9 9 0 0 1 0 12"/></svg></button><input id="volume" aria-label="PC master volume" type="range" min="0" max="100" value="50"><span id="vol-label">50%</span></div>
+      </div>
+      <div class="player-bottom"><span class="player-bottom-label">QUICK VOLUME</span><div id="volume-presets" class="volume-presets"><button data-volume="25" aria-label="Set PC volume to 25 percent">25%</button><button data-volume="50" aria-label="Set PC volume to 50 percent">50%</button><button data-volume="75" aria-label="Set PC volume to 75 percent">75%</button><button data-volume="100" aria-label="Set PC volume to 100 percent">100%</button></div></div>
+    </div>
+  </div>
+  <div class="section-head"><h2>System at a glance</h2><span>Live PC statistics</span></div>
+  <div class="quick-grid" id="quick-stats"><div class="metric card">Connecting…</div></div>
+</section>
+<section class="view" data-view="monitor" aria-label="PC monitoring">
+ <div class="section-head big"><div><p class="eyebrow">PERFORMANCE</p><h1>PC Monitor</h1></div><span class="live-indicator">● LIVE</span></div>
+ <div class="monitor-grid" id="monitor-stats"><div class="card pad">Waiting for PC statistics…</div></div>
+ <p class="footnote">CPU temperatures require compatible sensors. On Windows, optionally run LibreHardwareMonitor and install the Python <code>wmi</code> package. GPU and VRAM data require NVIDIA's nvidia-smi.</p>
+</section>
+<section class="view" data-view="controls" aria-label="Control deck">
+ <div class="section-head big"><div><p class="eyebrow">YOUR SHORTCUTS</p><h1>Control Deck</h1></div><button id="edit-toggle" class="small-button">Customize</button></div>
+ <p id="edit-hint" class="subcopy">Tap to control your PC. Edit mode changes button appearance and order on this iPhone, not the Windows commands.</p>
+ <div class="deck-heading">QUICK ACTIONS</div><div class="deck-grid" id="actions"></div>
+ <div class="deck-heading">APPLICATIONS</div><div class="deck-grid" id="apps"></div>
+ <div id="edit-panel" class="card editor hidden"><h3>Selected shortcut</h3><p id="selected-label">Select a button above</p><div class="edit-form"><label>Icon <input id="edit-icon" maxlength="4" placeholder="Emoji"></label><label>Accent color <input id="edit-color" type="color" value="#8d7cff"></label></div><div class="edit-row"><button id="move-left" class="small-button">← Move earlier</button><button id="move-right" class="small-button">Move later →</button><button id="hide-action" class="small-button">Hide</button></div><button id="reset-deck" class="text-button">Reset button layout to defaults</button></div>
+ <p class="footnote">Actual actions remain defined in <code>config.json</code> on the Windows PC. Custom layouts are saved locally in Safari.</p>
+</section>
+<section class="view" data-view="focus" aria-label="Pomodoro focus timer">
+ <div class="section-head big"><div><p class="eyebrow">STAY ON TASK</p><h1>Focus Timer</h1></div><div id="focus-count" class="focus-count">0 sessions</div></div>
+ <div class="focus-center card"><div class="modes"><button class="mode active" data-mode="focus">Focus</button><button class="mode" data-mode="short">Short break</button><button class="mode" data-mode="long">Long break</button></div>
+ <div class="timer-ring" id="timer-ring"><div class="timer-core"><span id="focus-caption">FOCUS TIME</span><div id="timer">25:00</div><span id="timer-status">Ready when you are</span></div></div>
+ <div class="timer-buttons"><button id="timer-reset" class="secondary-button">↺ Reset</button><button id="timer-start" class="primary-button">Start focus</button><button id="timer-skip" class="secondary-button">Skip →</button></div>
+ <div class="focus-settings"><label>Focus <input id="minutes-focus" type="number" min="1" max="180" value="25"> min</label><label>Short <input id="minutes-short" type="number" min="1" max="60" value="5"> min</label><label>Long <input id="minutes-long" type="number" min="1" max="90" value="15"> min</label></div>
+ <p class="subcopy">After four completed focus sessions, take a longer break. The timer stays accurate when Safari is in the background.</p></div>
+</section>
+</main>
+<nav id="bottom-nav" aria-label="Pages"><button class="nav-item active" data-nav="home"><span>⌂</span>Home</button><button class="nav-item" data-nav="monitor"><span>▥</span>Monitor</button><button class="nav-item" data-nav="controls"><span>▦</span>Controls</button><button class="nav-item" data-nav="focus"><span>◷</span>Focus</button></nav>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="/app.js?v=6" defer></script>
+</body>
+</html>

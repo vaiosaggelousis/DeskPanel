@@ -1,0 +1,69 @@
+{
+  "port": 8765,
+  "disk": "C:\\",
+  "hour12": false,
+  "weather": {
+    "place": "Athens",
+    "lat": 37.98,
+    "lon": 23.73,
+    "fahrenheit": false
+  },
+  "buttons": [
+    {
+      "label": "Play / Pause",
+      "type": "media",
+      "value": "play_pause"
+    },
+    {
+      "label": "Next track",
+      "type": "media",
+      "value": "next"
+    },
+    {
+      "label": "Volume down",
+      "type": "media",
+      "value": "volume_down"
+    },
+    {
+      "label": "Volume up",
+      "type": "media",
+      "value": "volume_up"
+    },
+    {
+      "label": "Mute",
+      "type": "media",
+      "value": "mute"
+    },
+    {
+      "label": "Lock PC",
+      "type": "lock",
+      "icon": "🔒"
+    },
+    {
+      "label": "Task Manager",
+      "type": "exec",
+      "value": "taskmgr",
+      "args": []
+    },
+    {
+      "label": "VS Code",
+      "type": "exec",
+      "value": "code",
+      "args": []
+    },
+    {
+      "label": "GitHub",
+      "type": "open",
+      "value": "https://github.com"
+    },
+    {
+      "label": "Downloads",
+      "type": "open",
+      "value": "%USERPROFILE%\\Downloads"
+    }
+  ],
+  "audio_outputs": [
+    "Speakers",
+    "Headphones"
+  ]
+}
